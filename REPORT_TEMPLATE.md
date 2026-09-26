@@ -113,12 +113,26 @@ Use the benchmark's primary paper or its official documentation for the task def
 
 ### 1. What does it measure?
 
+The task for HumanEval is to measure functional correctness of programs that have been created based off of docstrings. They measure programs written by GPT-3/GTP-J versus Codex-S. They measure correctness based on fuzzy matching of a reference solution. They also run tests for the correct answer.
+
 ### 2. What does it not measure that a software project may depend on?
+
+HumanEval doesn’t understand repository context or multi-file changes. It does not measure how different functions fit together and whether or not they are written in a simple way. It doesn’t write integration tests. The code might also be overly convoluted or appear correct, for example if one fundamental line is wrong in an otherwise correct solution.
 
 ### 3. How can a reported score rise without the underlying model becoming better?
 
+The reported score could rise by fine tuning the prompts against the same public samples. You could also sample many times and report on the best-of-k. They could also work on fine tuning the prompts, since they mention that they take them from developers, who are known for writing vague descriptions.
+
 ### 4. Could the model have seen the answers already?
 
-End with at least one sentence explaining why the published score is not interchangeable with your `CS690-Eval20` result.
+The authors reference fine tuning the models for this exercise, which could cause bias because it is telling the model to conform to a reference style rather than what it would naturally write in the real world. In the “Filtering problems” section, the authors mention that some of the prompts are too vague and cause certain correct answers to be flagged as wrong. In the “Docstring Generation” section, they talk about how the only way to ensure complete docstrings is to write them manually. This is time consuming, meaning they only grade 10 samples per problem.
+
+They mention that training is expensive and their data “comprises a significant fraction of publicly available Python code on Github”. This could cause contamination because a lot of the code examples might already be in Github somewhere. For example, according to the slides, independent work found that 12.2 percent of items were in some training corpus. Also, because the fuzzy matching is imprecise, the success can be inaccurately classified if the solution is fundamentally different.
+
+# End with at least one sentence explaining why the published score is not interchangeable with your `CS690-Eval20` result.
+
+This is not interchangeable because we only track whether the function evaluates properly, whereas HumanEval focuses on the actual code content itself. Our prompt style is a little different, we write it like a spec of inputs and outputs, but the docstring style might be whatever the developer felt like.
 
 ## References
+
+https://arxiv.org/pdf/2107.03374 - HumanEval official paper
