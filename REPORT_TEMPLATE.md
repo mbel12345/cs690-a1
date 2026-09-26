@@ -100,6 +100,11 @@ Address all five items:
 
 Overlapping intervals are not a formal significance test, and you are not asked to run one.
 
+Attempt B had a better pass@1 estimate (1.0) compared to Attempt As 0.95. The uncertainty evidence (ci95_pass_at_1) had 0.95 to 1 for A, 1 for B. Attempt A only had one failure, so with both attempts being close to 1. The evidence does not support a ranking. With one failure being the only imperfection, it is hard to evaluate which model is actually better.
+One limitation of the assignment is that the models were done on small assignments that just have a few steps. It isn’t clear how these would work on longer and more complicated prompts with how different function tie together.
+We did not set a random seed. So, this means when the model randomly chooses a word based on likelihood, it might be different for each student, which would cause the solutions to diverge quickly.
+
+
 ## Part 5. Reading a published score, 300 to 400 words
 
 Benchmark chosen (HumanEval, MBPP, LiveCodeBench, or SWE-bench):
